@@ -1,8 +1,10 @@
 package com.amonteiro.myapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
@@ -21,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         //Afficher une interface graphique
         setContentView(binding.root)
 
+        println("MainActivity.onCreate")
+
         //Callback du click sur valider
         binding.btValidate.setOnClickListener {
             if(binding.rbLike.isChecked) {
@@ -29,8 +33,6 @@ class MainActivity : AppCompatActivity() {
             else if(binding.rbLike.isChecked) {
                 binding.et.setText( binding.rbLike.text)
             }
-var i = 0
-            println("coucou : ${5/i}")
 
             binding.iv.setImageResource(R.drawable.baseline_flag_24)
         }
@@ -43,6 +45,23 @@ var i = 0
         }
 
 
+    }
+
+    //Callback création du menu
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menu.add(0,4,0,"Météo")
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    //Callback du click sur un menu
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == 4) {
+            val intent = Intent(this, WeatherActivity::class.java)
+            startActivity(intent)
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 
