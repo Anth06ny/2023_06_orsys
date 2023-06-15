@@ -8,21 +8,24 @@
     tools:context=".MainActivity">
 
     <RadioGroup
+        android:id="@+id/rg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <RadioButton
+            android:id="@+id/rbLike"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Like"/>
+            android:text="J'aime" />
 
         <RadioButton
+            android:id="@+id/rbDislike"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Dislike"/>
+            android:text="Je n'aime pas" />
     </RadioGroup>
 
     <LinearLayout
@@ -33,22 +36,24 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Complement"/>
+            android:text="Complément"/>
 
         <EditText
+            android:id="@+id/et"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Write name here"
+            android:hint="Saisir nom ici"
             android:minHeight="48dp"/>
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        app:srcCompat="@mipmap/ic_launcher"/>
+        app:srcCompat="@mipmap/ic_launcher" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,14 +66,15 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="Cancel" />
+            android:text="Annuler"/>
 
         <Button
             android:id="@+id/btValidate"
             android:layout_width="0dp"
+            android:theme="@style/myButton"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="Validate" />
+            android:text="Valider"/>
     </LinearLayout>
 </LinearLayout>
