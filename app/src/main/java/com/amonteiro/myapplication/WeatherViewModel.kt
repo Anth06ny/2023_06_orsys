@@ -12,12 +12,11 @@ class WeatherViewModel : ViewModel() {
         data= null
         errorMessage = ""
 
-        try {
-            data = RequestUtils.loadWeather(cityname)
-        }
-        catch(e:Exception) {
-            e.printStackTrace()
-            errorMessage = "Une erreur est survenue : ${e.message}"
-        }
+            try {
+                data = RequestUtils.loadWeather(cityname)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                errorMessage = "Une erreur est survenue : ${e.message}"
+            }
     }
 }

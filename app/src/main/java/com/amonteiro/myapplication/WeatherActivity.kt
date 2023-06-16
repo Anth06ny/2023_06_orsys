@@ -32,18 +32,23 @@ class WeatherActivity : AppCompatActivity() {
 
                 //affichage
                 runOnUiThread {
-                    //affichage des données
-                    binding.textView.text =
-                        "Il fait ${model.data?.main?.temp ?: "-"}° à ${model?.data?.name ?: "-"} avec un vent de ${model.data?.wind?.speed ?:"-"} m/s"
-
-                    //affichage de l'erreur
-                    binding.tvError.isVisible = model.errorMessage.isNotBlank()
-                    binding.tvError.text = "Une erreur est survenue : ${model.errorMessage}"
-
+                    refreshScreen()
                     binding.progressBar.isVisible = false
                 }
             }
         }
 
+
+        refreshScreen()
+    }
+
+    fun refreshScreen() {
+        //affichage des données
+        binding.textView.text =
+            "Il fait ${model.data?.main?.temp ?: "-"}° à ${model?.data?.name ?: "-"} avec un vent de ${model.data?.wind?.speed ?:"-"} m/s"
+
+        //affichage de l'erreur
+        binding.tvError.isVisible = model.errorMessage.isNotBlank()
+        binding.tvError.text = "Une erreur est survenue : ${model.errorMessage}"
     }
 }
