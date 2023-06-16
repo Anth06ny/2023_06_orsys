@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
     //Callback création du menu
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menu.add(0,4,0,"Météo")
+        menu.add(0,5,0,"Country")
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -58,6 +59,10 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == 4) {
             val intent = Intent(this, WeatherActivity::class.java)
+            startActivity(intent)
+        }
+        if(item.itemId == 5) {
+            val intent = Intent(this, CountryActivity::class.java)
             startActivity(intent)
         }
 

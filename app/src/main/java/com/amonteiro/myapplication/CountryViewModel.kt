@@ -4,13 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlin.concurrent.thread
 
-class WeatherViewModel : ViewModel() {
+class CountryViewModel : ViewModel() {
 
-    var data = MutableLiveData<WeatherBean?>(null)
+    var data = MutableLiveData<List<CountryBean>?>(null)
     var errorMessage = MutableLiveData("")
     var runInProgress = MutableLiveData(false)
 
-    fun loadData(cityname:String) {
+    fun loadData() {
         //reset de donnée
         data.postValue(null)
         errorMessage.postValue("")
@@ -19,7 +19,7 @@ class WeatherViewModel : ViewModel() {
 
         thread {
             try {
-                data.postValue(RequestUtils.loadWeather(cityname))
+                data.postValue(CountryAPIUtils.loadAllCountry())
             } catch (e: Exception) {
                 e.printStackTrace()
                 errorMessage.postValue("Une erreur est survenue : ${e.message}")
