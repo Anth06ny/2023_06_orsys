@@ -14,6 +14,13 @@ object RequestUtils {
     val client = OkHttpClient()
     val gson = Gson()
 
+
+    fun loadWeather(lat:Double, lon:Double): WeatherBean {
+        var json = sendGet("https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=b80967f0a6bd10d23e44848547b26550&units=metric&lang=fr")
+        val data :WeatherBean =  gson.fromJson(json , WeatherBean::class.java)
+
+        return data
+    }
     fun loadWeather(cityName:String): WeatherBean {
         var json = sendGet("https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=b80967f0a6bd10d23e44848547b26550&units=metric&lang=fr")
         val data :WeatherBean =  gson.fromJson(json , WeatherBean::class.java)

@@ -1,12 +1,13 @@
 package com.amonteiro.myapplication
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.pm.PackageManager
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import com.amonteiro.myapplication.databinding.ActivityMainBinding
 import com.amonteiro.myapplication.databinding.ActivityWeatherBinding
-import kotlin.concurrent.thread
 
 class WeatherActivity : AppCompatActivity() {
 
@@ -25,6 +26,40 @@ class WeatherActivity : AppCompatActivity() {
 
         binding.btLoad.setOnClickListener {
             model.loadData(binding.et.text.toString())
+        }
+
+        binding.btLoadPermission.setOnClickListener {
+            //Est ce que j'ai la permission
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+                //On a la permission
+                model.loadData(this)
+            }
+            else {
+                //Demande de permission
+                ActivityCompat.requestPermissions(this,
+                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 0)
+            }
+        }
+
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        //Est ce que j'ai la permission
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+            == PackageManager.PERMISSION_GRANTED) {
+            //On a la permission
+            model.loadData(this)
+        }
+        else {
+            //Demande de permission
+           model.errorMessage.postValue("Il faut la permission")
         }
 
     }
