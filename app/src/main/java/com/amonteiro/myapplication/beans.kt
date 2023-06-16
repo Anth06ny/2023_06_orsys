@@ -47,6 +47,8 @@ data class WeatherBean(var name:String, var main:TempBean, var wind:WindBean)
 data class TempBean(var temp: Double)
 data class WindBean(var speed: Double)
 
+data class CoordBean(var lat:Double, var lon:Double)
+
 //EXO
 
 class PrintRandomIntBean(var max :Int) {

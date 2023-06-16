@@ -1,13 +1,10 @@
 package com.amonteiro.myapplication
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.View.OnClickListener
-import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import com.amonteiro.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -51,6 +48,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menu.add(0,4,0,"Météo")
         menu.add(0,5,0,"Country")
+        menu.add(0,6,0,"Recyclerview")
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -63,6 +61,10 @@ class MainActivity : AppCompatActivity() {
         }
         if(item.itemId == 5) {
             val intent = Intent(this, CountryActivity::class.java)
+            startActivity(intent)
+        }
+        if(item.itemId == 6) {
+            val intent = Intent(this, WeatherArroundActivity::class.java)
             startActivity(intent)
         }
 
